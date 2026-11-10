@@ -23,7 +23,7 @@ Deployments use the newest `stable` version by default and are automatically upd
 
 ## v0.18
 
-Latest version: `0.18.0rc4`
+Latest version: `0.18.0rc5`
 
 <Callout icon="info" color="#F59E0B">
 This minor line is still a release candidate. The last stable release is `0.17.1`.
@@ -96,6 +96,9 @@ This minor line is still a release candidate. The last stable release is `0.17.1
 - Ignores a `fairness_weight` returned by a priority callback, with a warning, instead of failing the run.
 - Ships langgraph-sdk 0.4.12. Its `PrioritySettings` no longer offers `fairness_weight`, and its documentation now states that -5 runs first, matching the server.
 - Exposes queue loop metrics when `DISPATCH_MODE` is set to `multi-process`.
+- Allows redis-py 8.x in Agent Server images and user graph dependencies.
+- Thread get and search responses use much less memory on large threads, because thread values are no longer decoded and re-encoded.
+- Fixes live streams on LangSmith-hosted deployments dropping events when a thread streams large state (over 8 MB) more than a minute apart
 
 #### Security
 - Store operations from graphs now reject namespace labels that are empty or contain `.`, as the HTTP store API does, so such a label can no longer read or change another namespace's items.
@@ -106,6 +109,15 @@ This minor line is still a release candidate. The last stable release is `0.17.1
 - Patches Agent Server networking and tracing dependencies.
 
 <Accordion title="v0.18 releases">
+<Update label="2026-11-10" tags={["agent-server"]}>
+## v0.18.0rc5
+
+### Fixes
+- Allows redis-py 8.x in Agent Server images and user graph dependencies.
+- Thread get and search responses use much less memory on large threads, because thread values are no longer decoded and re-encoded.
+- Fixes live streams on LangSmith-hosted deployments dropping events when a thread streams large state (over 8 MB) more than a minute apart
+
+</Update>
 <Update label="2026-11-05" tags={["agent-server"]}>
 ## v0.18.0rc4
 
